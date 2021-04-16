@@ -186,6 +186,7 @@ echo "previous build is failed and current build is successful!!"
       echo "pipeline running is successful!"
       echo "========Deploying executed successfully========"
             mail bcc: '', body: 'deploying is sucesfull', cc: '', from: '', replyTo: '', subject: 'deployed', to: 'net2bks@gmail.com'
+      emailext attachLog: true, body: "<b>Example</b><br>Project: ${env.JOB_NAME}", from: 'net2bks@gmail.com', mimeType: 'text/html', replyTo: '', subject: "Deploy Success CI: Project name -> ${env.JOB_NAME}", to: "net2bks@gmail.com";
     }
     unstable
     {
