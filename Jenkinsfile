@@ -180,6 +180,7 @@ echo "previous build is failed and current build is successful!!"
     failure
     {
       echo "pipeline running is failed!"
+      mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>Stage Name: $last_staged <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: 'net2bks@gmail.com', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "net2bks@gmail.com";
     }
     success
     {
