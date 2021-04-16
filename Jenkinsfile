@@ -114,6 +114,7 @@ pipeline{
                          }
                     }
               }
+            }
     stage('deploy to artifactory'){
             steps{
             script{
