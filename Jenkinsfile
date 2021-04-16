@@ -98,19 +98,7 @@ pipeline{
               }
       }
     }
-   stage("Quality Gate") {
-            steps {
-              script{
-                last_staged = env.STAGE_NAME
-                }
-              timeout(time: 1, unit: 'HOURS') {
-                script{
-                
-                       waitForQualityGate abortPipeline: true
-                }
-                    }
-              }
-            }
+  
     stage('deploy to artifactory'){
             steps{
             script{
