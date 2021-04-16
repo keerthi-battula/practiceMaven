@@ -22,6 +22,9 @@ pipeline{
                 ok "Yes, we should."
             }
       steps {
+        script{
+                last_staged = env.STAGE_NAME
+                }
                 echo "Hello,  nice to meet you."
       }
     }
@@ -36,6 +39,9 @@ pipeline{
    // }
       steps
       {
+        script{
+                last_staged = env.STAGE_NAME
+                }
       bat 'mvn compile'
       }
        post
@@ -58,6 +64,9 @@ pipeline{
    // }
       steps
       {
+        script{
+                last_staged = env.STAGE_NAME
+                }
       bat 'mvn package'
       }
        post
@@ -80,13 +89,31 @@ pipeline{
   //  }
       steps
       {
+        script{
+                last_staged = env.STAGE_NAME
+                }
         withSonarQubeEnv('sonarSpring') {
                 bat 'java -version'
                 bat 'mvn clean package sonar:sonar'
               }
       }
     }
-   
+   stage("Quality Gate") {
+            steps {
+              script{
+                last_staged = env.STAGE_NAME
+                }
+              timeout(time: 1, unit: 'HOURS') {
+                script{
+                
+                        def qg = waitForQualityGate() 
+                        if (qg.status != 'OK')
+                        {
+                            error "Pipeline failed due to gate failure "
+                            
+                         }
+                    }
+              }
     stage('deploy to artifactory'){
             steps{
             script{
