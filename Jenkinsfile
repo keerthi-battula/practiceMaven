@@ -1,10 +1,10 @@
 pipeline{
   //agent none
-  agent any
-  
-  tools {
-    
-  }
+  agent any;
+     tools{
+       maven 'maven'
+       jdk 'JDK11'
+   }
   
   options
   {
