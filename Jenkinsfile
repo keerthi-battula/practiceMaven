@@ -1,5 +1,6 @@
 pipeline{
-  agent none
+  //agent none
+  agent any
   options
   {
    timeout(time: 15, unit: 'MINUTES') 
@@ -21,13 +22,13 @@ pipeline{
     }
     stage("build")
     {
-    agent {
- docker
-      {
-        image 'maven:3.8-jdk-11'
-        args '-v /root/.m2:/root/.m2'
-      }
-    }
+   // agent {
+ //docker
+      //{
+      //  image 'maven:3.8-jdk-11'
+       // args '-v /root/.m2:/root/.m2'
+      //}
+   // }
       steps
       {
       sh 'mvn compile'
@@ -43,13 +44,13 @@ pipeline{
     }
    stage ('package')
     {
-      agent {
- docker
-      {
-        image 'maven:3.8-jdk-11'
-        args '-v /root/.m2:/root/.m2'
-      }
-    }
+     // agent {
+// docker
+    //  {
+       // image 'maven:3.8-jdk-11'
+       // args '-v /root/.m2:/root/.m2'
+     // }
+   // }
       steps
       {
       sh 'mvn package'
@@ -65,13 +66,13 @@ pipeline{
     }
     stage ('sonar bulid and analysis')
     {
-      agent {
- docker
-      {
-        image 'maven:3.8-jdk-11'
-        args '-v /root/.m2:/root/.m2'
-      }
-    }
+     // agent {
+// docker
+     // {
+     //   image 'maven:3.8-jdk-11'
+     //   args '-v /root/.m2:/root/.m2'
+     // }
+  //  }
       steps
       {
         withSonarQubeEnv('sonarSpring') {
@@ -81,13 +82,13 @@ pipeline{
       }
     }
     stage("Quality gate") {
-      agent {
- docker
-      {
-        image 'maven:3.8-jdk-11'
-        args '-v /root/.m2:/root/.m2'
-      }
-    }
+     // agent {
+// docker
+     // {
+       // image 'maven:3.8-jdk-11'
+      //  args '-v /root/.m2:/root/.m2'
+    //  }
+   // }
             steps {
                 waitForQualityGate abortPipeline: true
             }
