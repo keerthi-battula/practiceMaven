@@ -98,15 +98,15 @@ pipeline{
               }
       }
     }
-  stage("Quality Gate") {
-            steps {
+/*  stage("Quality Gate") {
+           steps {
               script{
                 last_staged = env.STAGE_NAME
-                }
+               }
               timeout(time: 1, unit: 'HOURS') {
                 script{
                 
-                        def qg = waitForQualityGate() 
+                       def qg = waitForQualityGate() 
                         if (qg.status != 'OK')
                         {
                             error "Pipeline failed due to gate failure "
@@ -115,7 +115,7 @@ pipeline{
                     }
               }
             }
-  }
+  }*/
     stage('deploy to artifactory'){
             steps{
             script{
