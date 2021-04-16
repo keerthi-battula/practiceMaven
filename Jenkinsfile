@@ -112,6 +112,7 @@ pipeline{
                             error "Pipeline failed due to gate failure "
                             
                          }
+                }
                     }
               }
             }
