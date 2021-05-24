@@ -7,8 +7,8 @@ resources:
   repositories:
   - repository: MyGitHubRepo
     type: github
-    endpoint: githubServiceConnection
-    name: keerthi_battula/gs-spring-boot
+    endpoint: github.com_keerthi-battula
+    name: keerthi_battula/practiceMaven
 trigger:
 - main
 pool:
